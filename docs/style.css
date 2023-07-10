@@ -1,3 +1,7 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 header{
   background: linear-gradient(to right, #465bb8, #25135f);
   height: 75px;
@@ -14,13 +18,38 @@ header h1{
 
 main{
   display: flex; 
-  flex-wrap: none;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
+/*Left side*/
 aside{
   flex: 1 0;
 }
+
+aside input[type="text"],
+aside input[type="submit"]{
+  box-sizing: border-box;
+  width: 100%;
+  height: 35px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+aside input[type="text"]{
+  display: block;
+  border: 2px solid grey;
+  padding-left: 10px;
+}
+
+aside input[type="submit"]{
+  background: #6891e3;
+  color: white;
+  border: none;
+}
+
+/*Right side*/
 
 .right-side{
   flex: 3 0;
@@ -35,4 +64,23 @@ aside{
 
 .current-weather > h2{
   display: inline-block;
+  margin-right: 10px;
+}
+
+.right-side > h3{
+  margin-left: 16px;
+}
+
+.forecasts{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.forecast{
+  background: #323d4f;
+  flex-wrap: 1 0;  
+  padding-left: 8px;
+  color: white;
+  margin-left: 16px;
+  margin-right: 16px;
 }
