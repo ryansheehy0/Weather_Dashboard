@@ -1,0 +1,38 @@
+header{
+  background: linear-gradient(to right, #465bb8, #25135f);
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+header h1{
+  width: 75%;
+  text-align: center;
+  color: white;
+}
+
+main{
+  display: flex; 
+  flex-wrap: none;
+  justify-content: space-between;
+}
+
+aside{
+  flex: 1 0;
+}
+
+.right-side{
+  flex: 3 0;
+}
+
+.current-weather{
+  border: 1px solid black;
+  margin: 16px;
+  margin-right: 100px;
+  padding-left: 8px;
+}
+
+.current-weather > h2{
+  display: inline-block;
+}
