@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head> <!-- Contains metadata -->
+        <title>Weather Dashboard</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body> <!-- Contains the visible content -->
+      <header>
+        <h1>Weather Dashboard</h1>
+      </header>
+      <aside> <!-- Left side -->
+        <h2>Search for a City:</h2>
+        <form action="/submit" method="post">
+          <input type="text" name="city" placeholder="City">
+          <input type="submit" value="Submit">
+        </form>
+        <hr/>
+        <div class="search-history">
+          <!-- Buttons for searched cities gets added here in the JS. -->
+        </div>
+      </aside>
+      <div> <!-- Right side -->
+        <div class="current-weather">
+          <h2>City(MM/DD/YYYY)</h2><i class="fas fa-sun"></i>
+          <p>Temp: <span class="temp">00.00&deg;F</span></p>
+          <p>Wind: <span class="wind">0.00 MPH</span></p>
+          <p>Humidity: <span class="humidity">00 %</span></p>
+        </div>
+        <h3>5-Day Forecast:</h3>
+        <div class="forecasts">
+          <!-- The 5 forecasts are added here in JS with this template: -->
+          <div class="forecast">
+            <h4>MM/DD/YYYY</h4>
+            <i class="fas fa-sun"></i>
+            <p>Temp: <span class="temp">00.00&deg;F</span></p>
+            <p>Wind: <span class="wind">0.00 MPH</span></p>
+            <p>Humidity: <span class="humidity">00 %</span></p>
+          </div>
+        <div>
+      </div>
+    </body>
+</html>
