@@ -28,13 +28,15 @@ aside{
 }
 
 aside input[type="text"],
-aside input[type="submit"]{
+aside input[type="submit"],
+aside .history-button{
   box-sizing: border-box;
   width: 100%;
   height: 35px;
   border-radius: 6px;
   margin-bottom: 10px;
   font-size: 1.2rem;
+  border: none;
 }
 
 aside input[type="text"]{
@@ -49,8 +51,11 @@ aside input[type="submit"]{
   border: none;
 }
 
-/*Right side*/
+aside .history-button{
+  background: #aeaeae;
+}
 
+/*Right side*/
 .right-side{
   flex: 3 0;
 }
@@ -74,11 +79,12 @@ aside input[type="submit"]{
 .forecasts{
   display: flex;
   flex-wrap: nowrap;
+  margin-right: calc(100px - 16px);
 }
 
 .forecast{
   background: #323d4f;
-  flex-wrap: 1 0;  
+  flex: 1 0;  
   padding-left: 8px;
   color: white;
   margin-left: 16px;
