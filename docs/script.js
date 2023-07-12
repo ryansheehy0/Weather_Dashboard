@@ -1,11 +1,15 @@
-// Add history buttons. Fixed number of history buttons to 10.
-// Use local storage to store the history buttons and currently displayed city
-// Lower main weather icon
-// Add city dropdown box when searching
-// Clean up code
 // Add comments
 
-let historyButtons = []
+let historyButtons = JSON.parse(localStorage.getItem("historyButtons"))
+if(historyButtons === null){
+  historyButtons = []
+}
+
+let currentCity = localStorage.getItem("currentCity")
+console.log(currentCity)
+if(currentCity === null){
+  currentCity = "New York City,US"
+}
 
 // Add 5-Day Forecasts
 for(let i = 0; i < 5; i++){
@@ -76,6 +80,20 @@ function setCity(city){
   let apiKey = "d062b0bdde256bf7053f1ccf371fc717";
   setCurrentWeather(city, apiKey)
   setForecastWeathers(city, apiKey)
+  localStorage.setItem("currentCity", `${city}`)
+}
+
+function displayHistoryButtons(){
+  document.querySelector(".search-history").innerHTML = ""
+  for(let i = 0; i < historyButtons.length; i++){
+    document.querySelector(".search-history").innerHTML += `<button class="history-button">${historyButtons[i]}</button>`
+  }
+  document.querySelector(".search-history").addEventListener("click", function(event){
+    if(event.target.className !== "history-button"){
+      return
+    }
+    setCity(event.target.textContent)
+  })
 }
 
 function addHistoryButton(city){
@@ -83,12 +101,8 @@ function addHistoryButton(city){
   if(historyButtons.length > 10){
     historyButtons.shift()
   }
-}
-
-function displayHistoryButtons(){
-  for(let i = 0; i < historyButtons.length; i++){
-    
-  }
+  localStorage.setItem("historyButtons", `${JSON.stringify(historyButtons)}`)
+  displayHistoryButtons()
 }
 
 // When searching
@@ -99,6 +113,16 @@ document.querySelector(`aside form`).addEventListener("submit", function(event){
     console.log("Need to input city")
     return
   }
+  addHistoryButton(searchedCity)
   document.querySelector('aside input[type="text"]').value = ""
   setCity(searchedCity)
+})
+
+displayHistoryButtons()
+setCity(currentCity)
+
+document.querySelector(".clear-history").addEventListener("click", function(){
+  historyButtons = []
+  localStorage.removeItem("historyButtons")
+  displayHistoryButtons()
 })

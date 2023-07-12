@@ -29,7 +29,8 @@ aside{
 
 aside input[type="text"],
 aside input[type="submit"],
-aside .history-button{
+aside .history-button,
+aside .clear-history{
   box-sizing: border-box;
   width: 100%;
   height: 35px;
@@ -55,6 +56,10 @@ aside .history-button{
   background: #aeaeae;
 }
 
+aside .clear-history{
+  background: red;
+}
+
 /*Right side*/
 .right-side{
   flex: 3 0;
@@ -70,6 +75,11 @@ aside .history-button{
 .current-weather > h2{
   display: inline-block;
   margin-right: 10px;
+}
+
+.current-weather > img{
+  position: relative;
+  top: 15px;
 }
 
 .right-side > h3{
