@@ -1,5 +1,4 @@
-// Add comments
-
+//Set the global variables from the localSotrage
 let historyButtons = JSON.parse(localStorage.getItem("historyButtons"))
 if(historyButtons === null){
   historyButtons = []
@@ -24,6 +23,7 @@ for(let i = 0; i < 5; i++){
   `
 }
 
+//Sets the weather icon, temp, wind, and humidity of a weather element(current weather or one of the 5-day forecasts.
 function setWeather(weatherElement, weatherIcon, temp, wind, humidity){
   weatherElement.children[1].setAttribute("src", `http://openweathermap.org/img/w/${weatherIcon}.png`)
   weatherElement.children[2].children[0].textContent = temp
@@ -36,7 +36,7 @@ function setCurrentWeather(city, apiKey){
   .then(response => response.json())
   .then(data => {
     let currentWeatherElement = document.querySelector(".current-weather")
-    let dateInfo = new Date()
+    let dateInfo = new Date() //Used to get the current date
     let date = `(${dateInfo.getMonth() + 1}/${dateInfo.getDate()}/${dateInfo.getFullYear()})`
     let weatherIcon = data.weather[0].icon
     let temp = data.main.temp
@@ -59,7 +59,7 @@ function setForecastWeathers(city, apiKey){
     for(let i = 4; i < 40; i += 8){
       let data = forecasts.list[i]
       let forecastElement = document.querySelectorAll(".forecast")[(i-4)/8]
-      let dateInfo = new Date(data.dt_txt)
+      let dateInfo = new Date(data.dt_txt)//Used to change the format of the date gotten from the api
       let date = `${dateInfo.getMonth() + 1}/${dateInfo.getDate()}/${dateInfo.getFullYear()}`
       let weatherIcon = data.weather[0].icon
       let temp = data.main.temp
@@ -84,10 +84,12 @@ function setCity(city){
 }
 
 function displayHistoryButtons(){
+  //Removes any history buttons and then re-adds them all from the global var historyButtons
   document.querySelector(".search-history").innerHTML = ""
   for(let i = 0; i < historyButtons.length; i++){
     document.querySelector(".search-history").innerHTML += `<button class="history-button">${historyButtons[i]}</button>`
   }
+  //Adds event listener to newly created history buttons
   document.querySelector(".search-history").addEventListener("click", function(event){
     if(event.target.className !== "history-button"){
       return
@@ -97,6 +99,7 @@ function displayHistoryButtons(){
 }
 
 function addHistoryButton(city){
+  //Keeps the historyButtons to 10
   historyButtons.push(city)
   if(historyButtons.length > 10){
     historyButtons.shift()
@@ -105,7 +108,7 @@ function addHistoryButton(city){
   displayHistoryButtons()
 }
 
-// When searching
+// When search button is clicked
 document.querySelector(`aside form`).addEventListener("submit", function(event){
   event.preventDefault()
   let searchedCity = document.querySelector('aside input[type="text"]').value
@@ -118,9 +121,11 @@ document.querySelector(`aside form`).addEventListener("submit", function(event){
   setCity(searchedCity)
 })
 
+// At startup the code shows the history buttons and sets the city that was previously set
 displayHistoryButtons()
 setCity(currentCity)
 
+// When clear history button is clicked
 document.querySelector(".clear-history").addEventListener("click", function(){
   historyButtons = []
   localStorage.removeItem("historyButtons")
