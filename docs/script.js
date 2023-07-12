@@ -32,7 +32,7 @@ function setWeather(weatherElement, weatherIcon, temp, wind, humidity){
 }
 
 function setCurrentWeather(city, apiKey){
-  fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`)
   .then(response => response.json())
   .then(data => {
     let currentWeatherElement = document.querySelector(".current-weather")
@@ -53,7 +53,7 @@ function setCurrentWeather(city, apiKey){
 }
 
 function setForecastWeathers(city, apiKey){
-  fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`)
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`)
   .then(response => response.json())
   .then(forecasts => {
     for(let i = 4; i < 40; i += 8){
